@@ -1,27 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="columns is-gapless is-multiline is-mobile">
+    <div class="column is-one-quarter">
+      <BarraLateral />
+    </div>
+    <div class="column is-three-quarters ">
+      <Formulario />
+      <div class="lista">
+        <Tarefa v-for="tarefa in tarefas" :key="tarefa"/>
+      </div>
+    </div>
+  </div>
+  
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent } from "vue";
+import Formulario from "./components/Formulario.vue";
+import BarraLateral from "./components/BarraLateral.vue";
+import Tarefa from "./components/Tarefa.vue";
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Formulario,
+    BarraLateral,
+    Tarefa
+  },
+  data () {
+    return {
+      tarefas: [0,1,2,3,4]
+    }
   }
 });
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.lista {
+  padding: 1.25rem;
 }
 </style>
