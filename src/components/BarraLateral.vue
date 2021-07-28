@@ -20,13 +20,13 @@ h1 {
 strong {
   color: #f95738;
 }
-aside {
+header {
   background: #0d3b66;
   width: 100%;
   height: 100vh;
 }
 @media only screen and (max-width: 768px) {
-  aside {
+  header {
     padding: 2.5rem;
     height: auto;
   }
