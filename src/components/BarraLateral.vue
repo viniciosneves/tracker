@@ -1,7 +1,7 @@
 <template>
-  <aside>
+  <header>
     <h1>alura <strong>tracker</strong></h1>
-  </aside>
+  </header>
 </template>
 
 <script lang="ts">

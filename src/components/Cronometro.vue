@@ -1,7 +1,7 @@
 <template>
-  <p>
+  <section>
     <strong>00:00:00</strong>
-  </p>
+  </section>
 </template>
 
 <script lang="ts">

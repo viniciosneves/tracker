@@ -1,5 +1,5 @@
 <template>
-  <div class="columns is-gapless is-multiline is-mobile">
+  <main class="columns is-gapless is-multiline is-mobile">
     <div class="column is-one-quarter">
       <BarraLateral />
     </div>
@@ -9,8 +9,7 @@
         <Tarefa v-for="tarefa in tarefas" :key="tarefa"/>
       </div>
     </div>
-  </div>
-  
+  </main>
 </template>
 
 <script lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <div class="is-flex is-align-items-center is-justify-content-space-between">
+  <section class="is-flex is-align-items-center is-justify-content-space-between">
     <Cronometro />
     <button class="button">
       <span class="icon">
@@ -13,7 +13,7 @@
       </span>
       <span>stop</span>
     </button>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

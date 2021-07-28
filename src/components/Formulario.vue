@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="columns">
-      <div class="column is-8">
+      <div class="column is-8" role="form" aria-label="Formulário para iniciar uma nova tarefa">
         <input
           class="input"
           type="text"
