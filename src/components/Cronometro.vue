@@ -1,6 +1,6 @@
 <template>
   <section>
-    <strong>00:00:00</strong>
+    <strong>{{tempoDecorrido}}</strong>
   </section>
 </template>
 
@@ -8,7 +8,18 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Cronometro'
+  name: 'Cronometro',
+  props: {
+    tempoEmSegundos: {
+      type: Number,
+      default: 0
+    },
+  },
+  computed: {
+    tempoDecorrido () : string {
+      return new Date(this.tempoEmSegundos * 1000).toISOString().substr(11, 8)
+    }
+  }
 });
 </script>
 <style>
