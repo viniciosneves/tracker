@@ -1,11 +1,14 @@
 <template>
-  <main class="columns is-gapless is-multiline is-mobile">
+  <main class="columns is-gapless is-multiline">
     <div class="column is-one-quarter">
       <BarraLateral />
     </div>
     <div class="column is-three-quarters ">
       <Formulario @aoSalvarTarefa="salvarTarefa"/>
       <div class="lista">
+        <div class="box sem-tarefas" v-if="semTarefas">
+          Você não está muito produtivo hoje <span class="has-text-weight-bold">:(</span>
+        </div>
         <Tarefa v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index"/>
       </div>
     </div>
@@ -35,6 +38,11 @@ export default defineComponent({
     salvarTarefa (tarefa:ITarefa) : void {
       this.tarefas.push(tarefa)
     }
+  },
+  computed: {
+    semTarefas () :boolean {
+      return this.tarefas.length == 0
+    }
   }
 });
 </script>
@@ -42,5 +50,8 @@ export default defineComponent({
 <style scoped>
 .lista {
   padding: 1.25rem;
+}
+.box.sem-tarefas {
+  background: #FAF0CA;
 }
 </style>
