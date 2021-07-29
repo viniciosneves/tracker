@@ -4,9 +4,9 @@
       <BarraLateral />
     </div>
     <div class="column is-three-quarters ">
-      <Formulario />
+      <Formulario @aoSalvarTarefa="salvarTarefa"/>
       <div class="lista">
-        <Tarefa v-for="tarefa in tarefas" :key="tarefa"/>
+        <Tarefa v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index"/>
       </div>
     </div>
   </main>
@@ -17,6 +17,7 @@ import { defineComponent } from "vue";
 import Formulario from "./components/Formulario.vue";
 import BarraLateral from "./components/BarraLateral.vue";
 import Tarefa from "./components/Tarefa.vue";
+import ITarefa from "./interfaces/ITarefa"
 
 export default defineComponent({
   name: "App",
@@ -27,7 +28,12 @@ export default defineComponent({
   },
   data () {
     return {
-      tarefas: [0,1,2,3,4]
+      tarefas: [] as ITarefa[]
+    }
+  },
+  methods: {
+    salvarTarefa (tarefa:ITarefa) : void {
+      this.tarefas.push(tarefa)
     }
   }
 });
