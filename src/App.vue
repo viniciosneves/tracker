@@ -6,9 +6,9 @@
     <div class="column is-three-quarters ">
       <Formulario @aoSalvarTarefa="salvarTarefa"/>
       <div class="lista">
-        <div class="box sem-tarefas" v-if="semTarefas">
+        <Box v-if="semTarefas">
           Você não está muito produtivo hoje <span class="has-text-weight-bold">:(</span>
-        </div>
+        </Box>
         <Tarefa v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index"/>
       </div>
     </div>
@@ -20,6 +20,7 @@ import { defineComponent } from "vue";
 import Formulario from "./components/Formulario.vue";
 import BarraLateral from "./components/BarraLateral.vue";
 import Tarefa from "./components/Tarefa.vue";
+import Box from "./components/Box.vue";
 import ITarefa from "./interfaces/ITarefa"
 
 export default defineComponent({
@@ -27,7 +28,8 @@ export default defineComponent({
   components: {
     Formulario,
     BarraLateral,
-    Tarefa
+    Tarefa,
+    Box
   },
   data () {
     return {
@@ -50,8 +52,5 @@ export default defineComponent({
 <style scoped>
 .lista {
   padding: 1.25rem;
-}
-.box.sem-tarefas {
-  background: #FAF0CA;
 }
 </style>
