@@ -1,6 +1,9 @@
 <template>
   <header>
     <h1>alura <strong>tracker</strong></h1>
+    <div class="has-text-centered">
+      <button class="button" @click="alterarModo">Ativar modo {{ textoBtn }}</button>
+    </div>
   </header>
 </template>
 
@@ -9,6 +12,23 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "BarraLateral",
+  emits: ['aoAlterarModo'],
+  data () {
+    return {
+      modoEscuro: false
+    }
+  },
+  methods: {
+    alterarModo () : void {
+      this.modoEscuro = !this.modoEscuro
+      this.$emit('aoAlterarModo', this.modoEscuro)
+    }
+  },
+  computed: {
+    textoBtn () : string {
+      return this.modoEscuro ? 'claro' : 'escuro'
+    }
+  }
 });
 </script>
 <style scoped>
