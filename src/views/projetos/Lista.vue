@@ -15,16 +15,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Alura tracker</td>
+      <tr v-for="projeto in projetos" :key="projeto.id">
+        <td>{{ projeto.id }}</td>
+        <td>{{ projeto.nome }}</td>
         <td>
-          <button class="button mr-2 is-danger">
+          <button class="button mr-2 is-danger" @click="remover(projeto.id)">
             <span class="icon is-small">
               <i class="fas fa-trash"></i>
             </span>
           </button>
-          <router-link to="/projetos/1" class="button">
+          <router-link :to="`/projetos/${projeto.id}`" class="button">
             <span class="icon is-small">
               <i class="fas fa-pencil-alt"></i>
             </span>
@@ -36,11 +36,17 @@
 </template>
 
 <script lang="ts">
+import { REMOVE_PROJETO } from "@/store/tipos-mutacoes";
 import { computed, defineComponent } from "vue";
-import { useStore } from "../../store"
+import { useStore } from "@/store"
 
 export default defineComponent({
   name: "ProjetosLista",
+  methods: {
+    remover (id: string) {
+      this.store.commit(REMOVE_PROJETO, id)
+    }
+  },
   setup() {
     const store = useStore();
     return {

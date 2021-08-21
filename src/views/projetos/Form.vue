@@ -23,14 +23,21 @@
 </template>
 
 <script lang="ts">
+import { ADICIONA_PROJETO, ATUALIZA_PROJETO } from "@/store/tipos-mutacoes";
 import { defineComponent } from "vue";
-import { useStore } from "../../store"
+import { useStore } from "@/store"
 
 export default defineComponent({
   name: "ProjetosForm",
   props: {
     id: {
-      type: Number
+      type: String
+    }
+  },
+  mounted () {
+    if (this.id) { 
+      const projeto = this.store.state.projetos.find(p => p.id == this.id)
+      this.nomeProjeto = projeto!.nome
     }
   },
   data () { 
@@ -45,10 +52,12 @@ export default defineComponent({
           id: this.id,
           nome: this.nomeProjeto
         }
-        this.store.commit('atualizarProjeto', projeto)
+        this.store.commit(ATUALIZA_PROJETO, projeto)
       } else {
-        this.store.commit('adicionarProjeto', this.nomeProjeto)
+        this.store.commit(ADICIONA_PROJETO, this.nomeProjeto)
       }
+      this.nomeProjeto = ''
+      this.$router.push('/projetos')
     }
   },
   setup () {

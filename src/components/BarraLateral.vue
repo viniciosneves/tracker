@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1 class="m-0">
-      <img alt="Alura Tracker" src="../assets/logo.png" />
+      <img alt="Alura Tracker" src="@/assets/logo.png" />
     </h1>
     <div class="has-text-centered my-3">
       <button class="button" @click="alterarModo">
