@@ -1,53 +1,31 @@
 <template>
   <main class="columns is-gapless is-multiline" :class="{ 'modo-escuro' : modoEscuro}">
-    <div class="column is-one-quarter">
+    <div class="column is-one-fifth">
       <BarraLateral @aoAlterarModo="alterarModo"/>
     </div>
-    <div class="column is-three-quarters conteudo">
-      <Formulario @aoSalvarTarefa="salvarTarefa"/>
-      <div class="lista">
-        <Box v-if="semTarefas">
-          Você não está muito produtivo hoje <span class="has-text-weight-bold">:(</span>
-        </Box>
-        <Tarefa v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index"/>
-      </div>
+    <div class="column conteudo">
+      <router-view/>
     </div>
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Formulario from "./components/Formulario.vue";
 import BarraLateral from "./components/BarraLateral.vue";
-import Tarefa from "./components/Tarefa.vue";
-import Box from "./components/Box.vue";
-import ITarefa from "./interfaces/ITarefa"
 
 export default defineComponent({
   name: "App",
   components: {
-    Formulario,
-    BarraLateral,
-    Tarefa,
-    Box
+    BarraLateral
   },
   data () {
     return {
-      tarefas: [] as ITarefa[],
       modoEscuro: false
     }
   },
   methods: {
-    salvarTarefa (tarefa:ITarefa) : void {
-      this.tarefas.push(tarefa)
-    },
     alterarModo (modoEscuro: boolean) : void {
       this.modoEscuro = modoEscuro
-    }
-  },
-  computed: {
-    semTarefas () :boolean {
-      return this.tarefas.length == 0
     }
   }
 });

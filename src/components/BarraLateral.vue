@@ -1,11 +1,29 @@
 <template>
   <header>
-    <h1>
-      <img alt="Alura Tracker" src="../assets/logo.png">
+    <h1 class="m-0">
+      <img alt="Alura Tracker" src="../assets/logo.png" />
     </h1>
-    <div class="has-text-centered">
-      <button class="button" @click="alterarModo">Ativar modo {{ textoBtn }}</button>
+    <div class="has-text-centered my-3">
+      <button class="button" @click="alterarModo">
+        Ativar modo {{ textoBtn }}
+      </button>
     </div>
+    <nav class="panel mt-5">
+      <ul>
+        <li>
+          <router-link class="link" to="/">
+            <i class="fas fa-tasks"></i>
+            tarefas
+          </router-link>
+        </li>
+        <li>
+          <router-link class="link" to="/projetos">
+            <i class="fas fa-project-diagram"></i>
+            projetos
+          </router-link>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
@@ -14,23 +32,23 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "BarraLateral",
-  emits: ['aoAlterarModo'],
-  data () {
+  emits: ["aoAlterarModo"],
+  data() {
     return {
-      modoEscuro: false
-    }
+      modoEscuro: false,
+    };
   },
   methods: {
-    alterarModo () : void {
-      this.modoEscuro = !this.modoEscuro
-      this.$emit('aoAlterarModo', this.modoEscuro)
-    }
+    alterarModo(): void {
+      this.modoEscuro = !this.modoEscuro;
+      this.$emit("aoAlterarModo", this.modoEscuro);
+    },
   },
   computed: {
-    textoBtn () : string {
-      return this.modoEscuro ? 'claro' : 'escuro'
-    }
-  }
+    textoBtn(): string {
+      return this.modoEscuro ? "claro" : "escuro";
+    },
+  },
 });
 </script>
 <style scoped>
@@ -50,5 +68,17 @@ header {
   header {
     height: auto;
   }
+}
+.panel li {
+  margin: 8px 0;
+}
+.link {
+  color: #fff;
+}
+.link:hover {
+  color: #FAF0CA;
+}
+.link.router-link-active {
+  color: #FAF0CA;
 }
 </style>
