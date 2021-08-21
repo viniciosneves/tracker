@@ -1,7 +1,11 @@
 <template>
   <div class="box">
     <div class="columns">
-      <div class="column is-7" role="form" aria-label="Formulário para iniciar uma nova tarefa">
+      <div
+        class="column is-5"
+        role="form"
+        aria-label="Formulário para iniciar uma nova tarefa"
+      >
         <input
           class="input"
           type="text"
@@ -9,35 +13,56 @@
           v-model="descricao"
         />
       </div>
+      <div class="column is-3">
+        <div class="select">
+          <select v-model="idProjeto">
+            <option value="">Selecione o projeto</option>
+            <option :value="projeto.id" v-for="projeto in projetos" :key="projeto.id">
+              {{ projeto.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
       <div class="column">
-        <Temporizador @aoFinalizarTarefa="salvarTarefa"/>
+        <Temporizador @aoFinalizarTarefa="salvarTarefa" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { useStore } from "@/store";
+import { computed, defineComponent } from "vue";
 import Temporizador from "./Temporizador.vue";
 
 export default defineComponent({
   name: "Formulario",
-  emits: ['aoSalvarTarefa'],
+  emits: ["aoSalvarTarefa"],
   components: {
     Temporizador,
   },
-  data () { 
+  data() {
     return {
-      descricao: ''      
-    }
+      descricao: "",
+      idProjeto: "",
+    };
   },
   methods: {
-    salvarTarefa (tempoEmSegundos: number) : void {    
-      this.$emit('aoSalvarTarefa', {
+    salvarTarefa(tempoEmSegundos: number): void {
+      const tarefa = {
         duracaoEmSegundos: tempoEmSegundos,
-        descricao: this.descricao
-      })
-      this.descricao = ''
+        descricao: this.descricao,
+        projeto: this.projetos.find(p => p.id == this.idProjeto)
+      }
+      
+      this.$emit("aoSalvarTarefa", tarefa);
+      this.descricao = "";
+    },
+  },
+  setup () {
+    const store = useStore()
+    return {
+      projetos: computed(() => store.state.projetos),
     }
   }
 });
