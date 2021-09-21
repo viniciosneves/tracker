@@ -4,7 +4,7 @@
       <BarraLateral @aoAlterarModo="alterarModo"/>
     </div>
     <div class="column conteudo">
-      <routerview/>
+      <router-view/>
     </div>
   </main>
 </template>
