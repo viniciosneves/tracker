@@ -1,5 +1,4 @@
 import IProjeto from '@/interfaces/IProjeto'
-import ITarefa from '@/interfaces/ITarefa'
 import { InjectionKey } from 'vue'
 import { createStore, Store, useStore as baseUseStore, } from 'vuex'
 
@@ -11,29 +10,20 @@ export const key: InjectionKey<Store<State>> = Symbol()
 
 export const store = createStore<State>({
   state: {
-    projetos: [
-      {
-        id: new Date().toISOString(),
-        nome: 'TypeScript'
-      },
-      {
-        id: new Date().toISOString(),
-        nome: 'Vue'
-      },
-      {
-        id: new Date().toISOString(),
-        nome: 'Vuex'
-      }
-    ]
+    projetos: []
   },
   mutations: {
-    'ADICIONA_PROJETO'(state, nomeProjeto: string) {
+    'ADICIONA_PROJETO' (state, nomeProjeto: string) {
       const projeto = {
         nome: nomeProjeto,
         id: new Date().toISOString()
       }
       state.projetos.push(projeto)
-    }
+    },
+    'ATUALIZA_PROJETO' (state, projeto: IProjeto) {
+      const indice = state.projetos.findIndex(p => p.id == projeto.id)
+      state.projetos[indice] = projeto
+    },
   }
 })
 

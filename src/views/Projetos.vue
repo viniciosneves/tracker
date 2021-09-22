@@ -1,41 +1,30 @@
 <template>
   <div class="projetos">
-    <h1 class="title">Novo projeto</h1>
-    <form @submit.prevent="salvar">
-      <div class="field">
-        <label class="label">Nome do projeto</label>
-        <div class="control">
-          <input
-            class="input"
-            v-model="nomeProjeto"
-            type="text"
-            placeholder="Digite aqui o nome do projeto"
-            required
-          />
-        </div>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link" type="submit">Salvar</button>
-        </div>
-        <div class="control">
-          <router-link to="/projetos" class="button is-link is-light">
-            Voltar
-          </router-link>
-        </div>
-      </div>
-    </form>
-    <table class="table is-fullwidth">
+  <h1 class="title">Projetos</h1>
+  <router-link to="/projetos/novo" class="button">
+    <span class="icon is-small">
+      <i class="fas fa-plus"></i>
+    </span>
+    <span>Novo projeto</span>
+  </router-link>    <table class="table is-fullwidth">
       <thead>
         <tr>
           <th>#</th>
           <th>Projeto</th>
+          <th> </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="projeto in projetos" :key="projeto.id">
           <td>{{ projeto.id }}</td>
           <td>{{ projeto.nome }}</td>
+        <td>
+          <router-link :to="`/projetos/${projeto.id}`" class="button">
+            <span class="icon is-small">
+              <i class="fas fa-pencil-alt"></i>
+            </span>
+          </router-link>
+        </td>
         </tr>
       </tbody>
     </table>
@@ -51,15 +40,6 @@ export default defineComponent({
     return {
       nomeProjeto: "",
     };
-  },
-  methods: {
-    salvar() : void {
-      const projeto = {
-        nome: this.nomeProjeto,
-        id: new Date().toISOString(),
-      };
-        this.store.commit('ADICIONA_PROJETO', this.nomeProjeto)
-    },
   },
   setup() {
     const store = useStore();
