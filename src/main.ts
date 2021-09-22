@@ -2,8 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import '@fortawesome/fontawesome-free/css/all.css'
 
-import router from './router'
+import roteador from './roteador'
 
 createApp(App)
-  .use(router)
+  .use(roteador)
   .mount('#app')
