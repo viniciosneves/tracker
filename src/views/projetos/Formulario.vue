@@ -31,6 +31,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
+import { ADICIONA_PROJETO, ATUALIZA_PROJETO } from "@/store/tipos-mutacoes";
 
 export default defineComponent({
   name: "ProjetosForm",
@@ -64,9 +65,9 @@ export default defineComponent({
           id: this.id,
           nome: this.nomeProjeto,
         };
-        this.store.commit("ATUALIZA_PROJETO", projeto);
+        this.store.commit(ATUALIZA_PROJETO, projeto);
       } else {
-        this.store.commit("ADICIONA_PROJETO", this.nomeProjeto);
+        this.store.commit(ADICIONA_PROJETO, this.nomeProjeto);
       }
       this.nomeProjeto = "";
       this.$router.push("/projetos");
