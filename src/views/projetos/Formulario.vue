@@ -1,33 +1,31 @@
 <template>
-  <div class="projetos">
-    <h1 class="title">
-      {{ titulo }}
-    </h1>
-    <form @submit.prevent="salvar">
-      <div class="field">
-        <label class="label">Nome do projeto</label>
-        <div class="control">
-          <input
-            class="input"
-            v-model="nomeProjeto"
-            type="text"
-            placeholder="Digite aqui o nome do projeto"
-            required
-          />
-        </div>
+  <h1 class="title">
+    {{ titulo }}
+  </h1>
+  <form @submit.prevent="salvar">
+    <div class="field">
+      <label class="label">Nome do projeto</label>
+      <div class="control">
+        <input
+          class="input"
+          v-model="nomeProjeto"
+          type="text"
+          placeholder="Digite aqui o nome do projeto"
+          required
+        />
       </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link" type="submit">Salvar</button>
-        </div>
-        <div class="control">
-          <router-link to="/projetos" class="button is-link is-light">
-            Voltar
-          </router-link>
-        </div>
+    </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link" type="submit">Salvar</button>
       </div>
-    </form>
-  </div>
+      <div class="control">
+        <router-link to="/projetos" class="button is-link is-light">
+          Voltar
+        </router-link>
+      </div>
+    </div>
+  </form>
 </template>
 
 <script lang="ts">
