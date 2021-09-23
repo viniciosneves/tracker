@@ -6,17 +6,20 @@
     <div class="column conteudo">
       <router-view/>
     </div>
+    <Notificacoes />
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import BarraLateral from "./components/BarraLateral.vue";
+import Notificacoes from "./components/Notificacoes.vue";
 
 export default defineComponent({
   name: "App",
   components: {
-    BarraLateral
+    BarraLateral,
+    Notificacoes
   },
   data () {
     return {
