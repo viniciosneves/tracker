@@ -31,7 +31,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
-import { ADICIONA_PROJETO, ATUALIZA_PROJETO } from "@/store/tipos-mutacoes";
+import { ADICIONA_PROJETO, ATUALIZA_PROJETO, NOTIFICAR } from "@/store/tipos-mutacoes";
+import { INotificacao, TipoNotificacao } from "@/interfaces/INotificacao";
 
 export default defineComponent({
   name: "ProjetosForm",
@@ -70,6 +71,10 @@ export default defineComponent({
         this.store.commit(ADICIONA_PROJETO, this.nomeProjeto);
       }
       this.nomeProjeto = "";
+      this.store.commit(NOTIFICAR, {
+        texto: 'Projeto adicionado com sucesso',
+        tipo: TipoNotificacao.SUCESSO
+      });
       this.$router.push("/projetos");
     },
   },

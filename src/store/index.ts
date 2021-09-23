@@ -14,23 +14,7 @@ export const key: InjectionKey<Store<State>> = Symbol()
 export const store = createStore<State>({
   state: {
     projetos: [],
-    notificacoes: [
-      {
-        id: 1,
-        texto: "Olá mundo da notificação",
-        tipo: TipoNotificacao.SUCESSO,
-      },
-      {
-        id: 2,
-        texto: "Olá mundo da notificação",
-        tipo: TipoNotificacao.ATENCAO,
-      },
-      {
-        id: 3,
-        texto: "Olá mundo da notificação",
-        tipo: TipoNotificacao.ERRO,
-      },
-    ] as INotificacao[],
+    notificacoes: [],
   },
   mutations: {
     [ADICIONA_PROJETO](state, nomeProjeto: string) {
