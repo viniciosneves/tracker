@@ -33,7 +33,7 @@ import { defineComponent } from "vue";
 import { useStore } from "@/store";
 import { ADICIONA_PROJETO, ATUALIZA_PROJETO } from "@/store/tipos-mutacoes";
 import { TipoNotificacao } from "@/interfaces/INotificacao";
-import { notificacaoMixin } from "@/mixins/notificacaoMixin";
+import useNotificador from "@/notificador/useNotificador";
 
 export default defineComponent({
   name: "ProjetosForm",
@@ -42,7 +42,6 @@ export default defineComponent({
       type: String,
     },
   },
-  mixins: [notificacaoMixin],
   mounted() {
     if (this.id) {
       const projeto = this.store.state.projetos.find((p) => p.id == this.id);
@@ -80,8 +79,10 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    const { notificar } = useNotificador()
     return {
       store,
+      notificar
     };
   },
 });
