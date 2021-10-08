@@ -47,15 +47,20 @@ export default defineComponent({
     };
   },
   methods: {
-    remover (id: string) {
-      this.store.commit(REMOVE_PROJETO, id)
-    }
+    remover(id: string) {
+      this.store.commit(REMOVE_PROJETO, id);
+    },
   },
   setup() {
     const store = useStore();
     return {
       store,
-      projetos: computed(() => store.state.projetos),
+      projetos: computed(() => store.state.projetos, {
+        onTrack(e) {
+          console.log('observando')
+          debugger;
+        }
+      }),
     };
   },
 });
